@@ -1,0 +1,36 @@
+<%- include('../../layout/header')  -%>
+
+<body>
+    <div class="container column">
+        <div class="book_container">
+            <img src="<%= bookDetails.image_url %>" alt="">
+            <h2><%= bookDetails.title %></h2>
+            <h3><%= bookDetails.author %></h3>
+            <h3><%= bookDetails.isbn %></h3>
+            <p><%= bookDetails.description %></p>
+
+            <!-- <button> <a href="/">Home</a></button> -->
+            <div class="row btnOptions">
+                <form action="/deleteBook/<%= bookDetails.id %>?_method=DELETE" method="POST">
+                    <button type="submit"> Delete </button>
+                </form>
+                <button id="updateBtn">Update Book</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="updateForm_container" class="row">
+        <form action="/updateBook/<%= bookDetails.id %>?_method=PUT" method="POST" class="column" id="updateForm">
+            <input type="text" readonly='readonly' name="image_url" id="title" value="<%= bookDetails.image_url %>">
+            <input type="text" name="author" id="title" value="<%= bookDetails.author %>">
+            <input type="text" name="title" value="<%= bookDetails.title %>">
+            <input type="text" readonly='readonly' name="isbn" id="title" value="<%= bookDetails.isbn%>">
+            <textarea name="description" id='author' rows="10" cols="30"><%= bookDetails.description %> </textarea>
+            <input type="submit" value="Add this Book">
+        </form>
+    </div>
+
+</body>
+<%- include('../../layout/links')  -%>
+
+</html>

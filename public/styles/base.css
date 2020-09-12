@@ -1,0 +1,256 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    background-color: gainsboro;
+  }
+  /* Navigation Bar Start */
+  header {
+    width: 100%;
+    height: 75px;
+    background-color: #000000;
+    color: white;
+    align-items: center;
+    position: relative;
+  }
+  
+  header h1 {
+    font-size: 25px;
+    margin: 0 15px;
+  }
+  #dropbtn {
+    position: absolute;
+    right: 0;
+    margin: 0 30px;
+    font-size: 35px;
+    color: white;
+    border: none;
+    /* padding: 15px; */
+    background-color: #000000;
+  }
+  
+  #nav-content {
+    height: 50px;
+  }
+  
+  #nav-content a {
+    color: black;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+    text-decoration: none;
+    padding: 15px 0;
+    background-color: rgba(206, 198, 198, 0.5);
+    display: none;
+    z-index: 2;
+  }
+  
+  #nav-content a:hover {
+    color: blue;
+  }
+  
+  /* Navigation Bar End */
+  
+  /* Display Start */
+  
+  .row {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .column {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Display End */
+  
+  /* New Form Page Start */
+  .form_container {
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  #searchForm {
+    width: 25%;
+    text-align: center;
+    /* margin-top: 165px; */
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  #searchForm input[type='text'],
+  #searchForm input[type='submit'] {
+    width: 100%;
+    padding: 15px;
+    margin: 15px;
+  }
+  
+  #searchForm input[type='submit'] {
+    background-color: #000000;
+    color: white;
+    white-space: normal;
+    word-wrap: break-word;
+  }
+  
+  .form_content {
+    background-color: gray;
+    width: 100%;
+    margin: 15px;
+    padding: 15px;
+    margin-left: 15px;
+    border-radius: 5px;
+  }
+  
+  .form_content input {
+    margin-left: 15px;
+  }
+  
+  /* New Form Page End */
+  
+  /* Searches Show Page Start */
+  
+  .container {
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .book_container {
+    width: 20%;
+    text-align: center;
+    border: solid 1px;
+    background-color: rgb(156, 153, 149);
+    margin: 40px 0;
+    padding: 15px;
+    border-radius: 10px;
+  }
+  
+  .book_container img {
+    width: 50%;
+    object-fit: fill;
+    margin: 10px 0;
+    border: 1px solid;
+    padding: 10px;
+    background-color: white;
+  }
+  
+  .book_container h2 {
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    font-family: 'Courier New', Courier, monospace;
+    text-shadow: 2px 2px rgb(211, 73, 73);
+    margin-bottom: 10px;
+  }
+  
+  .book_container p {
+    font-size: 15px;
+    font-family: sans-serif;
+    margin-bottom: 10px;
+  }
+  
+  .book_container p:nth-of-type(2) {
+    text-justify: auto;
+    line-height: 1.5;
+    text-align: justify;
+    overflow: scroll;
+    height: 100px;
+    background-color: white;
+    padding-left: 5px;
+  }
+  
+  .book_container input[type='submit'] {
+    width: 50%;
+    padding: 10px;
+    margin: 5px 0;
+    color: white;
+    background-color: #000000;
+    border: none;
+  }
+  
+  #mainTitle {
+    font-weight: bold;
+    font-size: 25px;
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  #numberOfBooks {
+    border: 1px solid white;
+    padding: 5px;
+    border-radius: 50%;
+    background-color: white;
+    color: #000000;
+  }
+  
+  /* Searches Show Page End */
+  
+  /* details Book start */
+  .btnOptions {
+    justify-content: space-between;
+    margin: 20px;
+  }
+  
+  .btnOptions button {
+    padding: 10px 15px;
+    background-color: #333333;
+    color: white;
+    border: none;
+    font-size: 20px;
+    border-radius: 5px;
+    z-index: 1;
+  }
+  /* details Book end */
+  
+  /* Update Form Start */
+  #updateForm_container {
+    width: 100%;
+    position: absolute;
+    top: 10%;
+    align-items: center;
+    justify-content: flex-start;
+    z-index: 0;
+  }
+  
+  #updateForm {
+    width: 30%;
+    align-items: center;
+    justify-content: center;
+    margin: 15px;
+    padding: 15px;
+    border: 1px solid black;
+    background-color: rgb(175, 165, 165);
+  }
+  
+  #updateForm input,
+  #updateForm textarea {
+    width: 65%;
+    margin: 15px 0;
+    padding: 15px;
+    white-space: normal;
+    word-wrap: break-word;
+  }
+  
+  #updateForm img {
+    width: 150px;
+    height: 150px;
+  }
+  
+  #updateForm input[type='submit'] {
+    background-color: black;
+    border: none;
+    color: wheat;
+    font-size: 20px;
+  }
+  /* Update Form End */
+  

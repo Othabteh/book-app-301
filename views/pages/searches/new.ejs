@@ -1,0 +1,22 @@
+<%- include('../../layout/header')  -%>
+
+<body>
+
+    <div class="column form_container">
+        <form id="searchForm" action="/searches/show" method="POST">
+            <input type="text" name="searchBox" placeholder="Enter a title or author">
+            <div class="row form_content">
+                <label for='title'>Title</label>
+                <input type="radio" name="titleAuthor" value="title" id="title">
+            </div>
+            <div class="row form_content">
+                <label for="author">Author</label>
+                <input type="radio" name="titleAuthor" value="author" id='author'>
+            </div>
+            <input type="submit" value="Search The Google Books API">
+        </form>
+    </div>
+</body>
+<%- include('../../layout/links')  -%>
+
+</html>
