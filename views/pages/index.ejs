@@ -2,8 +2,30 @@
 
 <body>
 
+    <p>BOOKS</p>
+    <p>No. of books <%= bookCount%></p>
+    <button><a href="/searches/new">Hello world</a></button>
+    <% booksArr.forEach(item =>{ %>
+    <div>
+        <img src="<%= item.image_url %>" alt="">
+        <h2><%= item.title %></h2>
+        <h3><%= item.author %></h3>
+        <h3><%= item.isbn %></h3>
+        <p><%= item.description %></p>
 
+        <form action="/addBook" method="POST">
+            <input type="hidden" name="image_url" value="<%= item.image_url %>">
+            <input type="hidden" name="title" value="<%= item.title %>">
+            <input type="hidden" name="author" id="title" value="<%= item.author %>">
+            <input type="hidden" name="isbn" id='author' value="<%= item.isbn %>">
+            <input type="hidden" name="description" id='author' value="<%= item.description %>">
+            <input type="submit" value="Add this Book">
+        </form>
+    </div>
+
+    <% })%>
+
+    <%- include('../../layout/links')  -%>
 </body>
-<%- include('../../layout/links')  -%>
 
 </html>

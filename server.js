@@ -18,13 +18,25 @@ app.use(cors());
 app.use(methodOverride('_method'));
 
 
+app.get('/getBook/:bookID', bookDetailsHandler)
 app.get('/', mainRouteHandler);
 app.post('/searches/show', apiDataHandler);
 app.get('/searches/new', newSearchHandler);
+app.post('/getBook/show', showBookHandler)
 app.post('/addBook', addBookHandler);
+app.put('/updateBook/:bookID', updateBookHandler)
+app.delete('/deleteBook/:bookID', deleteBookHandler)
 
-function mainRouteHandler(req, res) {
-    res.render('pages/books/show')
+
+async function mainRouteHandler(req, res) {
+    let SQL2 = 'SELECT COUNT(id) FROM books;'
+    let count = await client.query(SQL2).then((results2) => { return (results2.rows[0].count); })
+    let SQL = `SELECT * FROM books ORDER BY id DESC;`;
+    client.query(SQL)
+        .then((results) => {
+            // console.log(results.rows);
+            res.render('pages/books/show', { booksArr: results.rows, bookCount: count })
+        })
 }
 
 function newSearchHandler(req, res) {
@@ -44,11 +56,23 @@ function apiDataHandler(req, res) {
             res.render('pages/searches/show', { data: bookData })
 
         })
+        .catch(() => {
+            errorHandler('Cannot Catch your Data from API', req, res)
+
+        })
 
 
 
     // console.log(req.body);
 }
+
+
+function errorHandler(error, req, res) {
+    res.render('pages/error', { err: error });
+
+};
+
+
 
 function addBookHandler(req, res) {
     // console.log(req.body);
@@ -62,10 +86,58 @@ function addBookHandler(req, res) {
             let values = [isbn];
             client.query(SQL2, values)
                 .then((results) => {
-                    res.redirect(`/newBook/${results.rows[0].id}`)
+                    res.redirect(`/getBook/${results.rows[0].id}`)
                 })
         })
 }
+
+
+
+function bookDetailsHandler(req, res) {
+    let SQL = `SELECT * FROM books WHERE id=$1`;
+    let book_id = req.params.bookID;
+    let values = [book_id];
+    client.query(SQL, values)
+        .then(results => {
+            res.render('pages/books/details', { bookDetails: results.rows[0] });
+
+        })
+}
+
+
+function showBookHandler(req, res) {
+    let SQL = `SELECT * FROM books ORDER BY id DESC;`;
+    client.query(SQL)
+        .then((results) => {
+            // console.log(results.rows);
+            res.render('pages/books/show', { booksArr: results.rows })
+        })
+}
+
+
+
+function updateBookHandler(req, res) {
+    let { author, title, isbn, image_url, description } = req.body;
+    let params = req.params.bookID;
+    let SQL = 'UPDATE books SET author=$1,title=$2,isbn=$3,image_url=$4,description=$5 WHERE id=$6;';
+    let safeValues = [author, title, isbn, image_url, description, params];
+    client.query(SQL, safeValues)
+        .then(() => {
+            console.log(params);
+            res.redirect(`/getBook/${params}`)
+        })
+
+}
+function deleteBookHandler(req, res) {
+    let SQL = `DELETE FROM books WHERE id=$1;`;
+    let values = [req.params.bookID];
+    client.query(SQL, values)
+        .then(() => {
+            res.redirect('/')
+        })
+
+}
+
 
 // constructor function
 function Book(data) {

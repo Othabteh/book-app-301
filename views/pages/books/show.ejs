@@ -1,12 +1,30 @@
 <%- include('../../layout/header')  -%>
 
 <body>
-    <button>
+    <!-- <button>
         <a href="/searches/new">osama</a>
-    </button>
+    </button> -->
+    <div id="mainTitle">
+        <p><span id="numberOfBooks">BOOKS</span> </p>
+        <p>No. of books <%= bookCount%></p>
+    </div>
+    <div class="container column">
+        <!-- <button><a href="/searches/new">Search for Books</a></button> -->
+        <% booksArr.forEach(item =>{ %>
+        <div class="book_container">
+            <img src="<%= item.image_url %>" alt="">
+            <h2><%= item.title %></h2>
+            <form action="/getBook/<%=item.id%>" method="GET">
+                <input type="submit" value="View Details" />
+            </form>
 
 
+        </div>
+        <% });%>
+    </div>
+
+    <%- include('../../layout/links')  -%>
 </body>
-<%- include('../../layout/links')  -%>
+
 
 </html>
